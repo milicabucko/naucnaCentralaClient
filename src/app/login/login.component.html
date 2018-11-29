@@ -1,0 +1,20 @@
+<p>
+  login works!
+</p>
+
+
+<form class="example-form" (ngSubmit)="login()" [formGroup]="loginForm">
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Email adresa" value="" formControlName="email">
+    </mat-form-field> <br>
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Lozinka" value="" formControlName="lozinka">
+    </mat-form-field><br>
+  
+    <a routerLink="/registration" class="btn btn-link">Registruj se!</a>
+    <button mat-button type="submit" class="btn btn-outline-dark">Prijavi se</button>
+  </form>
+
+<button (click)="zdravo()"> Zdravo </button>
+
+
