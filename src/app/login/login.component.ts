@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
   login(){
     let email = this.loginForm.value.email;
     this.ncService.login(email).subscribe(data =>{
-
+      alert("usla u metodu");
       if(data.lozinka === this.loginForm.value.lozinka){
         if(data.uloga === "AUTOR"){
           console.log("Ja sam AUTOR");

@@ -19,4 +19,9 @@ export class NaucnaCentralaService {
     return this.http.get(this.SERVER_URL + "/korisnik/login/" + email).map(res => res.json());
   }
 
+  findAllMagazin(korisnikId : Number){
+    alert('usla sam u service');
+    return this.http.get(this.SERVER_URL + '/magazin/findAllMagazin/' + korisnikId).map(res => res.json());
+  }
+
 }
