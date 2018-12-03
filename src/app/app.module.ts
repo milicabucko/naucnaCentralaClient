@@ -30,6 +30,7 @@ import { HomepageComponent } from './homepage/homepage.component';
 import { IzdanjaMagazinaComponent } from './izdanja-magazina/izdanja-magazina.component';
 import { HomepagecitalacComponent } from './homepagecitalac/homepagecitalac.component';
 import { PosaljiRadComponent } from './posalji-rad/posalji-rad.component';
+import { NaucniRadoviComponent } from './naucni-radovi/naucni-radovi.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { PosaljiRadComponent } from './posalji-rad/posalji-rad.component';
     HomepageComponent,
     IzdanjaMagazinaComponent,
     HomepagecitalacComponent,
-    PosaljiRadComponent
+    PosaljiRadComponent,
+    NaucniRadoviComponent
   ],
   imports: [
     BrowserModule,

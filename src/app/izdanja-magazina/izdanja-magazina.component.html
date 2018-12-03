@@ -5,11 +5,12 @@
     </mat-card-header>
     <mat-card-content>
       <p>
-        Mesec: {{izdanje.mesec}}
+        Mesec: {{izdanje.izdanje.mesec}}
       </p>
     </mat-card-content>
     <mat-card-actions>
-      <button [disabled] = "!izdanje.kupiIzdanje" mat-button>Kupi izdanje</button>
+      <button mat-button (click)=prikaziRadove(izdanje.izdanje.id)>Prikazi radove</button>
+      <button [disabled] = "!izdanje.kupiIzdanje" (click)="kupiIzdanje()" mat-button>Kupi izdanje</button>
       <button [disabled] = "!izdanje.preuzmiIzdanje" mat-button>Preuzmi izdanje</button>
     </mat-card-actions>
     

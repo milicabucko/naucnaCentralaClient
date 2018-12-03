@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
         alert("Unesite Vas email!");
       } 
       else if(lozinka === ""){
-        alert("Unesite Vas lozinku!");
+        alert("Unesite Vasu lozinku!");
       }
     }else{
       this.ncService.login(email).subscribe(data =>{

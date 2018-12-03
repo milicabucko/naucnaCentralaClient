@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NaucnaCentralaService } from '../naucna-centrala.service';
 
 @Component({
@@ -12,8 +12,9 @@ export class IzdanjaMagazinaComponent implements OnInit {
   magazinId: number;
   izdanjaMagazina: any;
   korisnik: any;
+  izdanjeId: number;
 
-  constructor(private route: ActivatedRoute, public ncService : NaucnaCentralaService) { }
+  constructor(private route: ActivatedRoute, public ncService : NaucnaCentralaService, private router: Router) { }
 
   ngOnInit() {
 
@@ -26,6 +27,16 @@ export class IzdanjaMagazinaComponent implements OnInit {
     this.ncService.izlistajSvaIzdanja(this.magazinId).subscribe(data=>{
       console.log(data);
       this.izdanjaMagazina = data;
+    })
+  }
+
+  prikaziRadove(izdanjeId){
+    this.router.navigate(['/listaRadova', izdanjeId]);
+  }
+
+  kupiIzdanje() {
+    this.ncService.helloPayment().subscribe(data=> {
+      
     })
   }
 

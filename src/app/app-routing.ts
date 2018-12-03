@@ -4,13 +4,15 @@ import { LoginComponent} from './login/login.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { IzdanjaMagazinaComponent } from './izdanja-magazina/izdanja-magazina.component';
 import { HomepagecitalacComponent } from './homepagecitalac/homepagecitalac.component';
+import { NaucniRadoviComponent } from './naucni-radovi/naucni-radovi.component';
 
 const routes: Routes = [
     { path: '', redirectTo:'/login', pathMatch:'full'},
     { path: 'login' , component: LoginComponent},
     { path: 'homePageAutor', component: HomepageComponent},
     { path: 'izdanjaMagazina/:magazinId', component: IzdanjaMagazinaComponent},
-    { path: 'homePageCitalac', component: HomepagecitalacComponent}
+    { path: 'homePageCitalac', component: HomepagecitalacComponent},
+    { path: 'listaRadova/:izdanjeId', component: NaucniRadoviComponent}
 
 ];
 
@@ -28,6 +30,6 @@ export class AppRoutingModule {}
 export const routingComponents = [
 
     LoginComponent, HomepageComponent, IzdanjaMagazinaComponent,
-    HomepagecitalacComponent
+    HomepagecitalacComponent, NaucniRadoviComponent
 
 ]
