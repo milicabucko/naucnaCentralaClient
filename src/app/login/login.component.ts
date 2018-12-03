@@ -22,19 +22,34 @@ export class LoginComponent implements OnInit {
     })
   }
 
+  //zameniti sve alerte dijalozima
+
   login(){
     let email = this.loginForm.value.email;
-    this.ncService.login(email).subscribe(data =>{
-      alert("usla u metodu");
+    let lozinka = this.loginForm.value.lozinka;
+    if(email === "" || lozinka === "" ){
+      if(email === ""){
+        alert("Unesite Vas email!");
+      } 
+      else if(lozinka === ""){
+        alert("Unesite Vas lozinku!");
+      }
+    }else{
+      this.ncService.login(email).subscribe(data =>{
+      //alert("usla u metodu");
       if(data.lozinka === this.loginForm.value.lozinka){
         if(data.uloga === "AUTOR"){
           console.log("Ja sam AUTOR");
           this.router.navigate(['/homePageAutor']);
+        }else{
+          console.log("Ja sam CITALAC");
+          this.router.navigate(['/homePageCitalac']);
+         }
+        }else{
+          alert("Neispravan email ili lozinka");
         }
-      }else{
-        alert("Neispravan email ili lozinka");
-      }
-    })
+     })
+    }
   }
 
   zdravo() {

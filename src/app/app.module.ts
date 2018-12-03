@@ -27,12 +27,18 @@ import { NaucnaCentralaService } from './naucna-centrala.service';
 import { LoginComponent } from './login/login.component';
 import { AppComponent } from './app.component';
 import { HomepageComponent } from './homepage/homepage.component';
+import { IzdanjaMagazinaComponent } from './izdanja-magazina/izdanja-magazina.component';
+import { HomepagecitalacComponent } from './homepagecitalac/homepagecitalac.component';
+import { PosaljiRadComponent } from './posalji-rad/posalji-rad.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    HomepageComponent
+    HomepageComponent,
+    IzdanjaMagazinaComponent,
+    HomepagecitalacComponent,
+    PosaljiRadComponent
   ],
   imports: [
     BrowserModule,

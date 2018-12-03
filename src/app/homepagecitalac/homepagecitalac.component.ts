@@ -3,32 +3,24 @@ import { NaucnaCentralaService } from '../naucna-centrala.service';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-homepage',
-  templateUrl: './homepage.component.html',
-  styleUrls: ['./homepage.component.css']
+  selector: 'app-homepagecitalac',
+  templateUrl: './homepagecitalac.component.html',
+  styleUrls: ['./homepagecitalac.component.css']
 })
-export class HomepageComponent implements OnInit {
-
-  magazini: any;
-  korisnik: any;
+export class HomepagecitalacComponent implements OnInit {
 
   constructor(public ncService : NaucnaCentralaService, private router: Router) { }
 
-  ngOnInit() {
+  magazini : any;
 
-    this.ncService.getActiveUser().subscribe(data =>{
-      this.korisnik = data;
-    })
+  ngOnInit() {
 
     this.ncService.findAllMagazin().subscribe(data =>{
       this.magazini = data;
     })
   }
-
-
+  
   prikaziIzdanja(magazinId){
     this.router.navigate(['/izdanjaMagazina', magazinId]);
   }
-
-
 }

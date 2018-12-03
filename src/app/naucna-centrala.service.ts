@@ -15,13 +15,19 @@ export class NaucnaCentralaService {
   }
 
   login(email){
-    alert('usla sam u service');
     return this.http.get(this.SERVER_URL + "/korisnik/login/" + email).map(res => res.json());
   }
 
-  findAllMagazin(korisnikId : Number){
-    alert('usla sam u service');
-    return this.http.get(this.SERVER_URL + '/magazin/findAllMagazin/' + korisnikId).map(res => res.json());
+  getActiveUser() {
+    return this.http.get(this.SERVER_URL + "/getActiveUser").map(res=>res.json());
+  }
+
+  findAllMagazin(){
+    return this.http.get(this.SERVER_URL + '/magazin/findAllMagazin').map(res => res.json());
+  }
+
+  izlistajSvaIzdanja(magazinId: Number){
+    return this.http.get(this.SERVER_URL + '/magazin/izlistajSvaIzdanja/' + magazinId).map(res => res.json());
   }
 
 }
