@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NaucnaCentralaService } from '../naucna-centrala.service';
+import { Constants } from '../constants/constants';
 
 @Component({
   selector: 'app-izdanja-magazina',
@@ -34,8 +35,8 @@ export class IzdanjaMagazinaComponent implements OnInit {
     this.router.navigate(['/listaRadova', izdanjeId]);
   }
 
-  kupiIzdanje() {
-    this.ncService.helloPayment().subscribe(data=> {
+  kupiIzdanje(izdanjeId) {
+    this.ncService.executePayment(izdanjeId, Constants.TIP_PROIZVODA_IZDANJE_MAGAZINA, this.korisnik.id, 4).subscribe(data=> {
       
     })
   }

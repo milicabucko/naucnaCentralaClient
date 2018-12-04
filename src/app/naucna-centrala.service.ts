@@ -14,8 +14,14 @@ export class NaucnaCentralaService {
     return this.http.get(this.SERVER_URL + "/korisnik/hello").map(res => res.toString());
   }
 
-  helloPayment() {
-    return this.http.get("http://localhost:9000" + "/payment/hello").map(res => res.toString());
+  executePayment(proizvodId: Number, tipProizvoda: String, korisnikId: Number, cena: Number) {
+    var kupovina : any;
+    kupovina = {};
+    kupovina.proizvodId = proizvodId;
+    kupovina.tipProizvoda = tipProizvoda;
+    kupovina.korisnikId = korisnikId;
+    kupovina.cena = cena;
+    return this.http.post("http://localhost:9000" + "/payment/execute", kupovina).map(res => res.toString());
   }
 
   login(email){
