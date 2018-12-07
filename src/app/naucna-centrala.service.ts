@@ -24,6 +24,14 @@ export class NaucnaCentralaService {
     return this.http.post("http://localhost:9000" + "/payment/execute", kupovina).map(res => res.toString());
   }
 
+  executeBitCoin(naziv: String, amount: Number) {
+    var kupovina : any;
+    kupovina = {};
+    kupovina.naziv = naziv;
+    kupovina.amount = amount;
+    return this.http.post("http://localhost:9000" + "/api/bitcoin", kupovina).map(res => res.toString());
+  }
+
   login(email){
     return this.http.get(this.SERVER_URL + "/korisnik/login/" + email).map(res => res.json());
   }

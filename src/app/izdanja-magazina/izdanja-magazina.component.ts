@@ -39,9 +39,16 @@ export class IzdanjaMagazinaComponent implements OnInit {
     this.ncService.executePayment(izdanjeId, Constants.TIP_PROIZVODA_IZDANJE_MAGAZINA, this.korisnik.id, 4).subscribe(data=> {
       
     })
+
+   
   }
 
+  kupiIzdanjeBitCoin(amount, naziv) {
+    this.ncService.executeBitCoin(naziv, amount).subscribe(data=> {
+      
+    })
 
+  }
 
 
 }
