@@ -21,7 +21,7 @@ export class NaucnaCentralaService {
     kupovina.tipProizvoda = tipProizvoda;
     kupovina.korisnikId = korisnikId;
     kupovina.cena = cena;
-    return this.http.post("http://localhost:9000" + "/payment/execute", kupovina).map(res => res.toString());
+    return this.http.post("http://localhost:9000" + "/payment/execute", kupovina).map(res => res.text());
   }
 
   executeBitCoin(naziv: String, amount: Number) {

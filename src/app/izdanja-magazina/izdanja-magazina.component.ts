@@ -35,9 +35,10 @@ export class IzdanjaMagazinaComponent implements OnInit {
     this.router.navigate(['/listaRadova', izdanjeId]);
   }
 
-  kupiIzdanje(izdanjeId) {
-    this.ncService.executePayment(izdanjeId, Constants.TIP_PROIZVODA_IZDANJE_MAGAZINA, this.korisnik.id, 4).subscribe(data=> {
-      
+  kupiIzdanje(izdanjeId, cenaIzdanja) {
+    this.ncService.executePayment(izdanjeId, Constants.TIP_PROIZVODA_IZDANJE_MAGAZINA, this.korisnik.id, cenaIzdanja).subscribe(data=> {
+      console.log(data);
+      window.open(data);
     })
 
    
