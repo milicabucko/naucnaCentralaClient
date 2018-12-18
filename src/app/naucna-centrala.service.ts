@@ -6,7 +6,8 @@ import { Observable } from 'rxjs';
 @Injectable()
 export class NaucnaCentralaService {
 
-  private SERVER_URL = "http://localhost:7000";
+  private SERVER_URL = "https://localhost:7000";
+  private PAYMENT_CONCENTRATOR_URL = "https://localhost:9000";
 
   constructor(private http : Http) { }
 
@@ -21,7 +22,7 @@ export class NaucnaCentralaService {
     kupovina.tipProizvoda = tipProizvoda;
     kupovina.korisnikId = korisnikId;
     kupovina.cena = cena;
-    return this.http.post("http://localhost:9000" + "/payment/execute", kupovina).map(res => res.text());
+    return this.http.post(this.PAYMENT_CONCENTRATOR_URL + "/payment/execute", kupovina).map(res => res.text());
   }
 
   executeBitCoin(naziv: String, amount: Number) {
@@ -29,7 +30,7 @@ export class NaucnaCentralaService {
     kupovina = {};
     kupovina.naziv = naziv;
     kupovina.amount = amount;
-    return this.http.post("http://localhost:9000" + "/api/bitcoin", kupovina).map(res => res.toString());
+    return this.http.post(this.PAYMENT_CONCENTRATOR_URL + "/api/bitcoin", kupovina).map(res => res.toString());
   }
 
   login(email){
