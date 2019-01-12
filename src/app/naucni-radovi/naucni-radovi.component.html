@@ -9,7 +9,7 @@
       </p>
     </mat-card-content>
     <mat-card-actions>
-      <button [disabled] = "!rad.kupiRad" mat-button>Kupi rad</button>
+      <button [disabled] = "!rad.kupiRad" (click)="kupiRad(rad.rad.id, rad.cena)" mat-button>Kupi rad</button>
       <button [disabled] = "!rad.preuzmiRad" mat-button>Preuzmi rad</button>
     </mat-card-actions>
     
