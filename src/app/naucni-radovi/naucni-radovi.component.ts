@@ -29,6 +29,10 @@ export class NaucniRadoviComponent implements OnInit {
     this.ncService.izlistajSveRadove(this.izdanjeId).subscribe(data=>{
       console.log(data);
       this.radovi = data;
+      if(data.length == 0){
+        alert("Trenutno radova za ovo izdanje");
+        this.router.navigate(['/homePageCitalac']);
+      }
     })
   }
 

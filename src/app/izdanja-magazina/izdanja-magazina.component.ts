@@ -26,8 +26,12 @@ export class IzdanjaMagazinaComponent implements OnInit {
     })
 
     this.ncService.izlistajSvaIzdanja(this.magazinId).subscribe(data=>{
-      console.log(data);
+      console.log(data.length);
       this.izdanjaMagazina = data;
+      if(data.length == 0){
+        alert("Nema izdanja za ovaj magazin");
+        this.router.navigate(['/homePageCitalac']);
+      }
     })
   }
 
