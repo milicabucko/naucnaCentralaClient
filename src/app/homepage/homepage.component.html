@@ -25,8 +25,7 @@
   <mat-card-actions>
     <div>
     <button [disabled] = "!magazin.postaviRad" mat-button>Posalji rad</button>
-    <button [disabled] = "!magazin.platiClanarinu" mat-button>Plati clanarinu</button></div>
-  <!--  <button mat-button (click)="prikaziIzdanja(magazin.magazin.id)">Prikazi izdanja</button>-->
+    <button [disabled] = "!magazin.platiClanarinu" (click)="platiClanarinu()"mat-button>Plati clanarinu</button></div>
   </mat-card-actions>
   
 </mat-card>

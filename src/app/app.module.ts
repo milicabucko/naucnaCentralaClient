@@ -26,11 +26,11 @@ import { NaucnaCentralaService } from './naucna-centrala.service';
 //COMPONENTS
 import { LoginComponent } from './login/login.component';
 import { AppComponent } from './app.component';
-import { HomepageComponent } from './homepage/homepage.component';
+import { HomepageComponent, PlatiClanarinuAutorDialog } from './homepage/homepage.component';
 import { IzdanjaMagazinaComponent, DialogOverviewExampleDialog } from './izdanja-magazina/izdanja-magazina.component';
-import { HomepagecitalacComponent } from './homepagecitalac/homepagecitalac.component';
+import { HomepagecitalacComponent, PlatiClanarinuHomepageDialog } from './homepagecitalac/homepagecitalac.component';
 import { PosaljiRadComponent } from './posalji-rad/posalji-rad.component';
-import { NaucniRadoviComponent } from './naucni-radovi/naucni-radovi.component';
+import { NaucniRadoviComponent, NaucniRadoviDialog } from './naucni-radovi/naucni-radovi.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +41,10 @@ import { NaucniRadoviComponent } from './naucni-radovi/naucni-radovi.component';
     HomepagecitalacComponent,
     PosaljiRadComponent,
     NaucniRadoviComponent,
-    DialogOverviewExampleDialog
+    DialogOverviewExampleDialog,
+    NaucniRadoviDialog,
+    PlatiClanarinuHomepageDialog,
+    PlatiClanarinuAutorDialog
   ],
   imports: [
     BrowserModule,
@@ -59,6 +62,9 @@ import { NaucniRadoviComponent } from './naucni-radovi/naucni-radovi.component';
   ],
   providers: [NaucnaCentralaService],
   bootstrap: [AppComponent],
-  entryComponents: [DialogOverviewExampleDialog]
+  entryComponents: [DialogOverviewExampleDialog,
+                    NaucniRadoviDialog,
+                    PlatiClanarinuHomepageDialog,
+                    PlatiClanarinuAutorDialog]
 })
 export class AppModule { }

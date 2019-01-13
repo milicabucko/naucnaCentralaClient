@@ -5,8 +5,8 @@ import { Constants } from '../constants/constants';
 import { MAT_DIALOG_DATA, MatDialogRef, MatDialog } from '@angular/material';
 
 export interface DialogData {
-  izdanjeId: number;
-  magazinId: number;
+ // izdanjeId: number;
+  //magazinId: number;
   //korisnik: any;
 }
 
@@ -48,34 +48,15 @@ export class IzdanjaMagazinaComponent implements OnInit {
     this.router.navigate(['/listaRadova', izdanjeId]);
   }
 
-  kupiIzdanje(izdanjeId, cenaIzdanja) {
+  kupiIzdanje(id, cena) {
 
     const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
-      width: '250px',
-      data: {izdanjeId, cenaIzdanja,korisnik: this.korisnik}
+      width: '400px',
+      data: {id, cena,korisnik: this.korisnik}
     });
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
-    });
-
-    // this.ncService.executePayment(izdanjeId, Constants.TIP_PROIZVODA_IZDANJE_MAGAZINA, this.korisnik.id, cenaIzdanja).subscribe(data=> {
-    //   console.log(data);
-    //   window.open(data);
-    // })
-
-   
-  }
-
-  openDialog(): void {
-    const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
-      width: '250px',
-   //   data: {name: this.name, animal: this.animal}
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-   //   this.animal = result;
     });
   }
 
@@ -83,9 +64,7 @@ export class IzdanjaMagazinaComponent implements OnInit {
     this.ncService.executeBitCoin(naziv, amount).subscribe(data=> {
       
     })
-
   }
-
 
 }
 
