@@ -38,11 +38,11 @@ export class HomepagecitalacComponent implements OnInit {
     this.router.navigate(['/izdanjaMagazina', magazinId]);
   }
   
-  platiClanarinu(){
+  platiClanarinu(magazinId){
 
     const dialogRef = this.dialog.open(PlatiClanarinuHomepageDialog, {
       width: '400px',
-      data: {korisnik: this.korisnik}
+      data: {korisnik: this.korisnik, magazinId: magazinId}
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -60,7 +60,7 @@ export class PlatiClanarinuHomepageDialog {
 
   constructor(
     public dialogRef: MatDialogRef<PlatiClanarinuHomepageDialog>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData,
+    @Inject(MAT_DIALOG_DATA) public data: any,
     public ncService : NaucnaCentralaService) {}
 
 
@@ -69,7 +69,9 @@ export class PlatiClanarinuHomepageDialog {
   }
 
   platiClanarinu() {
-    alert("Funkcionalnost jos nije implementirana");
+    this.ncService.executePayment(this.data.magazinId, Constants.CLANARINA, this.data.korisnik.id, 4, 3).subscribe(data=> {
+      window.open(data);
+    })
   }
   
 

@@ -76,7 +76,7 @@ export class NaucniRadoviDialog {
   }
 
   kupiRad(id, cena, korisnik){
-    this.ncService.executePayment(id, Constants.TIP_PROIZVODA_NAUCNI_RAD, korisnik, cena).subscribe(data=> {
+    this.ncService.executePayment(id, Constants.TIP_PROIZVODA_NAUCNI_RAD, korisnik, cena, -1).subscribe(data=> {
       console.log(data);
       window.open(data);
     })
