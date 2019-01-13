@@ -27,7 +27,7 @@ import { NaucnaCentralaService } from './naucna-centrala.service';
 import { LoginComponent } from './login/login.component';
 import { AppComponent } from './app.component';
 import { HomepageComponent } from './homepage/homepage.component';
-import { IzdanjaMagazinaComponent } from './izdanja-magazina/izdanja-magazina.component';
+import { IzdanjaMagazinaComponent, DialogOverviewExampleDialog } from './izdanja-magazina/izdanja-magazina.component';
 import { HomepagecitalacComponent } from './homepagecitalac/homepagecitalac.component';
 import { PosaljiRadComponent } from './posalji-rad/posalji-rad.component';
 import { NaucniRadoviComponent } from './naucni-radovi/naucni-radovi.component';
@@ -40,7 +40,8 @@ import { NaucniRadoviComponent } from './naucni-radovi/naucni-radovi.component';
     IzdanjaMagazinaComponent,
     HomepagecitalacComponent,
     PosaljiRadComponent,
-    NaucniRadoviComponent
+    NaucniRadoviComponent,
+    DialogOverviewExampleDialog
   ],
   imports: [
     BrowserModule,
@@ -57,6 +58,7 @@ import { NaucniRadoviComponent } from './naucni-radovi/naucni-radovi.component';
 
   ],
   providers: [NaucnaCentralaService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [DialogOverviewExampleDialog]
 })
 export class AppModule { }

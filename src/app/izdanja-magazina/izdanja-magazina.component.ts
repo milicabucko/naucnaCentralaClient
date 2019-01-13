@@ -1,7 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NaucnaCentralaService } from '../naucna-centrala.service';
 import { Constants } from '../constants/constants';
+import { MAT_DIALOG_DATA, MatDialogRef, MatDialog } from '@angular/material';
+
+export interface DialogData {
+  izdanjeId: number;
+  magazinId: number;
+  //korisnik: any;
+}
 
 @Component({
   selector: 'app-izdanja-magazina',
@@ -15,7 +22,9 @@ export class IzdanjaMagazinaComponent implements OnInit {
   korisnik: any;
   izdanjeId: number;
 
-  constructor(private route: ActivatedRoute, public ncService : NaucnaCentralaService, private router: Router) { }
+
+
+  constructor(public dialog: MatDialog, private route: ActivatedRoute, public ncService : NaucnaCentralaService, private router: Router) { }
 
   ngOnInit() {
 
@@ -40,12 +49,34 @@ export class IzdanjaMagazinaComponent implements OnInit {
   }
 
   kupiIzdanje(izdanjeId, cenaIzdanja) {
-    this.ncService.executePayment(izdanjeId, Constants.TIP_PROIZVODA_IZDANJE_MAGAZINA, this.korisnik.id, cenaIzdanja).subscribe(data=> {
-      console.log(data);
-      window.open(data);
-    })
+
+    const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
+      width: '250px',
+      data: {izdanjeId, cenaIzdanja,korisnik: this.korisnik}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
+
+    // this.ncService.executePayment(izdanjeId, Constants.TIP_PROIZVODA_IZDANJE_MAGAZINA, this.korisnik.id, cenaIzdanja).subscribe(data=> {
+    //   console.log(data);
+    //   window.open(data);
+    // })
 
    
+  }
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
+      width: '250px',
+   //   data: {name: this.name, animal: this.animal}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+   //   this.animal = result;
+    });
   }
 
   kupiIzdanjeBitCoin(amount, naziv) {
@@ -55,5 +86,32 @@ export class IzdanjaMagazinaComponent implements OnInit {
 
   }
 
+
+}
+
+
+@Component({
+  selector: 'dialog-overview-example-dialog',
+  templateUrl: 'dialog-overview-example-dialog.html',
+})
+export class DialogOverviewExampleDialog {
+
+  constructor(
+    public dialogRef: MatDialogRef<DialogOverviewExampleDialog>,
+    @Inject(MAT_DIALOG_DATA) public data: DialogData,
+    public ncService : NaucnaCentralaService) {}
+
+
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
+
+  kupiIzdanje(izdanjeId, cenaIzdanja, korisnik) {
+     this.ncService.executePayment(izdanjeId, Constants.TIP_PROIZVODA_IZDANJE_MAGAZINA, korisnik, cenaIzdanja).subscribe(data=> {
+       console.log(data);
+       window.open(data);
+     })
+  }
+  
 
 }
