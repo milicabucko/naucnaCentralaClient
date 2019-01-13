@@ -13,7 +13,7 @@
       <ng-template #elseBlock><b>Obavezna clanarina</b></ng-template>
   </mat-card-content>
   <mat-card-actions>
-    <button [disabled] = "!magazin.platiClanarinu" (click)="platiClanarinu(magazin.magazin.id)" mat-button>Plati clanarinu</button>
+    <button [disabled] = "!magazin.platiClanarinu" (click)="platiClanarinu(magazin)" mat-button>Plati clanarinu</button>
     <button mat-button (click)="prikaziIzdanja(magazin.magazin.id)">Prikazi izdanja</button>
   </mat-card-actions>
   

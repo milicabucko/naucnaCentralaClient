@@ -38,11 +38,11 @@ export class HomepagecitalacComponent implements OnInit {
     this.router.navigate(['/izdanjaMagazina', magazinId]);
   }
   
-  platiClanarinu(magazinId){
+  platiClanarinu(magazin){
 
     const dialogRef = this.dialog.open(PlatiClanarinuHomepageDialog, {
       width: '400px',
-      data: {korisnik: this.korisnik, magazinId: magazinId}
+      data: {korisnik: this.korisnik, magazin: magazin}
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -69,7 +69,7 @@ export class PlatiClanarinuHomepageDialog {
   }
 
   platiClanarinu() {
-    this.ncService.executePayment(this.data.magazinId, Constants.CLANARINA, this.data.korisnik.id, 4, 3).subscribe(data=> {
+    this.ncService.executePayment(this.data.magazin.magazin.id, Constants.CLANARINA, this.data.korisnik.id, this.data.magazin.cenovnikClanarine.cena, this.data.magazin.cenovnikClanarine.brojMeseci).subscribe(data=> {
       window.open(data);
     })
   }
