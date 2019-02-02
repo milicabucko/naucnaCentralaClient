@@ -89,4 +89,12 @@ export class NaucniRadoviDialog {
     })
   }
 
+  kupiBitCoin(id,cena,korisnik){
+    console.log("busdbfwef");
+    this.ncService.executeBitCoin(id, Constants.TIP_PROIZVODA_NAUCNI_RAD, korisnik , cena).subscribe(data=>{
+      console.log(data);
+
+    })
+  }
+
 }

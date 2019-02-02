@@ -26,11 +26,13 @@ export class NaucnaCentralaService {
     return this.http.post(this.PAYMENT_CONCENTRATOR_URL + "/payment/execute", kupovina).map(res => res.text());
   }
 
-  executeBitCoin(naziv: String, amount: Number) {
+  executeBitCoin(proizvodId: Number, tipProizvoda: String, korisnikId: Number, cena: Number) {
     var kupovina : any;
     kupovina = {};
-    kupovina.naziv = naziv;
-    kupovina.amount = amount;
+    kupovina.proizvodId = proizvodId;
+    kupovina.tipProizvoda = tipProizvoda;
+    kupovina.korisnikId = korisnikId;
+    kupovina.cena = cena;
     return this.http.post(this.PAYMENT_CONCENTRATOR_URL + "/api/bitcoin", kupovina).map(res => res.toString());
   }
 

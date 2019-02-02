@@ -60,12 +60,6 @@ export class IzdanjaMagazinaComponent implements OnInit {
     });
   }
 
-  kupiIzdanjeBitCoin(amount, naziv) {
-    this.ncService.executeBitCoin(naziv, amount).subscribe(data=> {
-      
-    })
-  }
-
 }
 
 
@@ -95,6 +89,14 @@ export class DialogOverviewExampleDialog {
   kupiPrekoBanke(id,cena,korisnik){
     console.log("busdbfwef");
     this.ncService.executeBankPayment(id, Constants.TIP_PROIZVODA_IZDANJE_MAGAZINA, korisnik , cena).subscribe(data=>{
+      console.log(data);
+
+    })
+  }
+
+  kupiBitCoin(id,cena,korisnik){
+    console.log("busdbfwef");
+    this.ncService.executeBitCoin(id, Constants.TIP_PROIZVODA_IZDANJE_MAGAZINA, korisnik , cena).subscribe(data=>{
       console.log(data);
 
     })
