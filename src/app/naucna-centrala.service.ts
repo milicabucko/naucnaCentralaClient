@@ -34,6 +34,17 @@ export class NaucnaCentralaService {
     return this.http.post(this.PAYMENT_CONCENTRATOR_URL + "/api/bitcoin", kupovina).map(res => res.toString());
   }
 
+  executeBankPayment(proizvodId: Number, tipProizvoda: String, korisnikId: Number, cena: Number, brojMeseci: number) {
+    var kupovina : any;
+    kupovina = {};
+    kupovina.proizvodId = proizvodId;
+    kupovina.tipProizvoda = tipProizvoda;
+    kupovina.korisnikId = korisnikId;
+    kupovina.cena = cena;
+    kupovina.brojMeseci = brojMeseci;
+    return this.http.post(this.SERVER_URL + "/api/bankPayment", kupovina).map(res => res.text());
+  }
+
   login(email){
     return this.http.get(this.SERVER_URL + "/korisnik/login/" + email).map(res => res.json());
   }
