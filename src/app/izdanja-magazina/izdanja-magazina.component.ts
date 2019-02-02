@@ -92,5 +92,12 @@ export class DialogOverviewExampleDialog {
      })
   }
   
+  kupiPrekoBanke(id,cena,korisnik){
+    console.log("busdbfwef");
+    this.ncService.executeBankPayment(id, Constants.TIP_PROIZVODA_IZDANJE_MAGAZINA, korisnik , cena).subscribe(data=>{
+      console.log(data);
+
+    })
+  }
 
 }

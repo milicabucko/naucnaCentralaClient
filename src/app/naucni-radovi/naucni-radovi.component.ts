@@ -56,7 +56,6 @@ export class NaucniRadoviComponent implements OnInit {
     });
    
   }
-
 }
 
 @Component({
@@ -79,6 +78,14 @@ export class NaucniRadoviDialog {
     this.ncService.executePayment(id, Constants.TIP_PROIZVODA_NAUCNI_RAD, korisnik, cena, -1).subscribe(data=> {
       console.log(data);
       window.open(data);
+    })
+  }
+
+  kupiPrekoBanke(id,cena,korisnik){
+    console.log("busdbfwef");
+    this.ncService.executeBankPayment(id, Constants.TIP_PROIZVODA_NAUCNI_RAD, korisnik , cena).subscribe(data=>{
+      console.log(data);
+
     })
   }
 

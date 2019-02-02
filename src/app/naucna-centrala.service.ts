@@ -34,14 +34,14 @@ export class NaucnaCentralaService {
     return this.http.post(this.PAYMENT_CONCENTRATOR_URL + "/api/bitcoin", kupovina).map(res => res.toString());
   }
 
-  executeBankPayment(proizvodId: Number, tipProizvoda: String, korisnikId: Number, cena: Number, brojMeseci: number) {
+  executeBankPayment(proizvodId: Number, tipProizvoda: String, korisnikId: Number, cena: Number) {
     var kupovina : any;
     kupovina = {};
     kupovina.proizvodId = proizvodId;
     kupovina.tipProizvoda = tipProizvoda;
     kupovina.korisnikId = korisnikId;
     kupovina.cena = cena;
-    kupovina.brojMeseci = brojMeseci;
+    console.log("usli brzi prsti");
     return this.http.post(this.SERVER_URL + "/api/bankPayment", kupovina).map(res => res.text());
   }
 

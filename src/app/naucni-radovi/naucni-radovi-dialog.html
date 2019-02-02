@@ -4,7 +4,7 @@
     <p>Molimo odaberite nacin placanja</p>
   </div>
 <div mat-dialog-actions>   
-  <button mat-button>Kartica</button>
+  <button mat-button (click)="kupiPrekoBanke(data.id, data.cena,data.korisnik.id)">Kartica</button>
   <button mat-button (click)="kupiRad(data.id, data.cena,data.korisnik.id)">PayPal</button>
   <button mat-button>BitCoin</button>
 
