@@ -90,10 +90,17 @@ export class NaucniRadoviDialog {
   }
 
   kupiBitCoin(id,cena,korisnik){
-    console.log("busdbfwef");
     this.ncService.executeBitCoin(id, Constants.TIP_PROIZVODA_NAUCNI_RAD, korisnik , cena).subscribe(data=>{
       console.log(data);
-
+      var array = data.split(',')
+      var paymentUrl = array[0];
+      console.log(paymentUrl);
+      document.location.href =paymentUrl;
+      var transactionId = array[1];
+      alert(transactionId+" je id transakcije");
+      this.ncService.saveBitCoinTransaction(id, Constants.TIP_PROIZVODA_NAUCNI_RAD, korisnik , cena, transactionId).subscribe(data=>{
+        console.log(data);
+      })
     })
   }
 

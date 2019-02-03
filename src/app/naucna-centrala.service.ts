@@ -30,10 +30,23 @@ export class NaucnaCentralaService {
     var kupovina : any;
     kupovina = {};
     kupovina.proizvodId = proizvodId;
+    console.log(proizvodId);
     kupovina.tipProizvoda = tipProizvoda;
     kupovina.korisnikId = korisnikId;
     kupovina.cena = cena;
-    return this.http.post(this.PAYMENT_CONCENTRATOR_URL + "/api/bitcoin", kupovina).map(res => res.toString());
+    return this.http.post(this.PAYMENT_CONCENTRATOR_URL + "/api/bitcoin", kupovina).map(res => res.text());
+  }
+
+  saveBitCoinTransaction(proizvodId: Number, tipProizvoda: String, korisnikId: Number, cena: Number, transactionId: String) {
+    var kupovina : any;
+    kupovina = {};
+    kupovina.proizvodId = proizvodId;
+    console.log(proizvodId);
+    kupovina.tipProizvoda = tipProizvoda;
+    kupovina.korisnikId = korisnikId;
+    kupovina.cena = cena;
+    kupovina.transactionId = transactionId;
+    return this.http.post(this.SERVER_URL + "/api/addBitCoin", kupovina).map(res => res.text());
   }
 
   executeBankPayment(proizvodId: Number, tipProizvoda: String, korisnikId: Number, cena: Number) {
