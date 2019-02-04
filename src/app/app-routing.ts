@@ -5,6 +5,7 @@ import { HomepageComponent } from './homepage/homepage.component';
 import { IzdanjaMagazinaComponent } from './izdanja-magazina/izdanja-magazina.component';
 import { HomepagecitalacComponent } from './homepagecitalac/homepagecitalac.component';
 import { NaucniRadoviComponent } from './naucni-radovi/naucni-radovi.component';
+import { RegistrationComponent } from './registration/registration.component';
 
 const routes: Routes = [
     { path: '', redirectTo:'/login', pathMatch:'full'},
@@ -12,7 +13,8 @@ const routes: Routes = [
     { path: 'homePageAutor', component: HomepageComponent},
     { path: 'izdanjaMagazina/:magazinId', component: IzdanjaMagazinaComponent},
     { path: 'homePageCitalac', component: HomepagecitalacComponent},
-    { path: 'listaRadova/:izdanjeId', component: NaucniRadoviComponent}
+    { path: 'listaRadova/:izdanjeId', component: NaucniRadoviComponent},
+    { path: 'registration', component: RegistrationComponent}
 
 ];
 
@@ -30,6 +32,6 @@ export class AppRoutingModule {}
 export const routingComponents = [
 
     LoginComponent, HomepageComponent, IzdanjaMagazinaComponent,
-    HomepagecitalacComponent, NaucniRadoviComponent
+    HomepagecitalacComponent, NaucniRadoviComponent, RegistrationComponent
 
 ]

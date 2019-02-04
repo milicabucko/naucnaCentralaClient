@@ -1,0 +1,78 @@
+<form [formGroup]="registrationForm" (submit)="save()">
+  
+  <div class="form-group">
+    <mat-form-field>
+      <input matInput
+        placeholder="Ime"
+        class="form-control"
+        formControlName="ime"
+      >
+    </mat-form-field>
+  </div>
+
+  <div class="form-group">
+    <mat-form-field>
+      <input matInput
+        placeholder="Prezime"
+        class="form-control"
+        formControlName="prezime"
+      >
+    </mat-form-field>
+  </div>
+
+  <div class="form-group">
+    <mat-form-field>
+      <input matInput
+        placeholder="Email"
+        class="form-control"
+        formControlName="email"
+        type="email"
+      >
+    </mat-form-field>
+  </div>
+
+  <div class="form-group">
+    <mat-form-field>
+      <input matInput
+        placeholder="Lozinka"
+        class="form-control"
+        formControlName="lozinka"
+        type="password"
+      >
+    </mat-form-field>
+  </div>
+
+  <br>
+  <div class="form-group">
+    <mat-select placeholder="Uloga" formControlName="uloga">
+      <mat-option *ngFor="let uloga of uloge" [value]="uloga.value">
+        {{ uloga.viewValue }}
+      </mat-option>
+    </mat-select>
+  </div>
+
+  <br>
+  <br>
+  <div class="form-group">
+    <mat-select placeholder="Tipovi placanja" formControlName="tipoviPlacanja" (ngModelChange)="somethingChanged()" multiple>
+      <mat-option *ngFor="let tip of tipovi" [value]="tip.value">
+        {{ tip.viewValue }}
+      </mat-option>
+    </mat-select>
+  </div>
+
+  <div class="form-group" [hidden] = !isBitcoin>
+    <mat-form-field>
+      <input matInput
+        placeholder="Token"
+        class="form-control"
+        formControlName="token"
+      >
+    </mat-form-field>
+  </div>
+
+  <br>
+  <br>
+  <button mat-button type="submit" [disabled] = "!registrationForm.valid">Sacuvaj</button>
+
+</form>

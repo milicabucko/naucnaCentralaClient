@@ -31,6 +31,7 @@ import { IzdanjaMagazinaComponent, DialogOverviewExampleDialog } from './izdanja
 import { HomepagecitalacComponent, PlatiClanarinuHomepageDialog } from './homepagecitalac/homepagecitalac.component';
 import { PosaljiRadComponent } from './posalji-rad/posalji-rad.component';
 import { NaucniRadoviComponent, NaucniRadoviDialog } from './naucni-radovi/naucni-radovi.component';
+import { RegistrationComponent } from './registration/registration.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { NaucniRadoviComponent, NaucniRadoviDialog } from './naucni-radovi/naucn
     DialogOverviewExampleDialog,
     NaucniRadoviDialog,
     PlatiClanarinuHomepageDialog,
-    PlatiClanarinuAutorDialog
+    PlatiClanarinuAutorDialog,
+    RegistrationComponent
   ],
   imports: [
     BrowserModule,

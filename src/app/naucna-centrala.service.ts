@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { Observable } from 'rxjs';
+import { Constants } from './constants/constants';
 
 @Injectable()
 export class NaucnaCentralaService {
@@ -13,6 +14,26 @@ export class NaucnaCentralaService {
 
   hello() {
     return this.http.get(this.SERVER_URL + "/korisnik/hello").map(res => res.toString());
+  }
+
+  registration(korisnik: any) {
+
+    korisnik.banka = false;
+    korisnik.paypal = false;
+    korisnik.bitcoin = false;
+
+    if (korisnik.tipoviPlacanja.includes(Constants.TIP_PLACANJA_BANKA)) {
+      korisnik.banka = true;
+    }
+    if (korisnik.tipoviPlacanja.includes(Constants.TIP_PLACANJA_PAYPAL)) {
+      korisnik.paypal = true;
+    }
+    if (korisnik.tipoviPlacanja.includes(Constants.TIP_PLACANJA_BITCOIN)) {
+      korisnik.bitcoin = true;
+    }
+
+    return this.http.post(this.SERVER_URL + "/korisnik/registration", korisnik).map(res => res.text());
+
   }
 
   executePayment(proizvodId: Number, tipProizvoda: String, korisnikId: Number, cena: Number, brojMeseci: number) {
