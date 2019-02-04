@@ -4,8 +4,8 @@
     <p>Molimo odaberite nacin placanja</p>
   </div>
 <div mat-dialog-actions>   
-  <button mat-button (click)="kupiPrekoBanke(data.id, data.cena,data.korisnik.id)">Kartica</button>
-  <button mat-button (click)="kupiRad(data.id, data.cena,data.korisnik.id)">PayPal</button>
-  <button mat-button (click)="kupiBitCoin(data.id, data.cena,data.korisnik.id)">BitCoin</button>
+  <button mat-button [disabled] = "!data.korisnik.banka" (click)="kupiPrekoBanke(data.id, data.cena,data.korisnik.id)">Kartica</button>
+  <button mat-button [disabled] = "!data.korisnik.paypal" (click)="kupiRad(data.id, data.cena,data.korisnik.id)">PayPal</button>
+  <button mat-button [disabled] = "!data.korisnik.bitcoin" (click)="kupiBitCoin(data.id, data.cena,data.korisnik.id)">BitCoin</button>
 
 </div>
