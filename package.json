@@ -4,7 +4,7 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve --ssl true --ssl-key /node_modules/browser-sync/lib/server/certs/server.key --ssl-cert /node_modules/browser-sync/lib/server/certs/server.crt",
     "build": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
@@ -38,6 +38,7 @@
     "@types/jasmine": "^3.3.0",
     "@types/jasminewd2": "~2.0.2",
     "@types/node": "~10.12.10",
+    "browser-sync": "^2.26.3",
     "codelyzer": "^4.0.1",
     "jasmine-core": "~3.3.0",
     "jasmine-spec-reporter": "~4.2.1",
