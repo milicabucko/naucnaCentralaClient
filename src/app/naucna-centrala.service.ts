@@ -36,6 +36,10 @@ export class NaucnaCentralaService {
 
   }
 
+  commonPasswordsCheck(lozinka) {
+    return this.http.get(this.SERVER_URL + "/korisnik/commonPassword/" + lozinka).map(res => res.json());
+  }
+
   executePayment(proizvodId: Number, tipProizvoda: String, korisnikId: Number, cena: Number, brojMeseci: number) {
     var kupovina : any;
     kupovina = {};

@@ -13,6 +13,7 @@ export class RegistrationComponent implements OnInit {
 
   registrationForm: FormGroup;
   isBitcoin: Boolean;
+  isCommonPassword: Boolean;
 
   constructor(private router: Router, private route: ActivatedRoute, private naucnaCentralaService: NaucnaCentralaService) { }
 
@@ -28,6 +29,7 @@ export class RegistrationComponent implements OnInit {
     })
 
     this.isBitcoin = false;
+    this.isCommonPassword = false;
   }
 
   save() {
@@ -48,6 +50,14 @@ export class RegistrationComponent implements OnInit {
       this.registrationForm.controls['token'].setErrors(null);
     }
 
+  }
+
+  commonPasswordsCheck() {
+    if (this.registrationForm.value.lozinka != "") {
+      this.naucnaCentralaService.commonPasswordsCheck(this.registrationForm.value.lozinka).subscribe(data=>{
+        this.isCommonPassword = data;
+      })
+    }
   }
 
   uloge = [

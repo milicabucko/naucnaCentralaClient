@@ -38,7 +38,9 @@
         class="form-control"
         formControlName="lozinka"
         type="password"
+        (ngModelChange)="commonPasswordsCheck()"
       >
+      <mat-hint [hidden]=!isCommonPassword >Upozorenje! Sifra koju ste izabrali se cesto koristi i moze se lako pogoditi!</mat-hint>
     </mat-form-field>
   </div>
 
