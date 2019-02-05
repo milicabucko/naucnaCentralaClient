@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.loginForm = new FormGroup({
-      email: new FormControl('',[Validators.required]),
+      email: new FormControl('',[Validators.required, Validators.email]),
       lozinka: new FormControl('',[Validators.required])
     })
   }
@@ -25,31 +25,24 @@ export class LoginComponent implements OnInit {
   //zameniti sve alerte dijalozima
 
   login(){
-    let email = this.loginForm.value.email;
-    let lozinka = this.loginForm.value.lozinka;
-    if(email === "" || lozinka === "" ){
-      if(email === ""){
-        alert("Unesite Vas email!");
-      } 
-      else if(lozinka === ""){
-        alert("Unesite Vasu lozinku!");
+    
+    this.ncService.login(this.loginForm.value.email, this.loginForm.value.lozinka).subscribe(data =>{
+    
+      if (data.id === -1) {
+        this.loginForm.reset();
+        alert('Nepostojeci korisnik!');
       }
-    }else{
-      this.ncService.login(email).subscribe(data =>{
-      //alert("usla u metodu");
-      if(data.lozinka === this.loginForm.value.lozinka){
-        if(data.uloga === "AUTOR"){
-          console.log("Ja sam AUTOR");
-          this.router.navigate(['/homePageAutor']);
-        }else{
-          console.log("Ja sam CITALAC");
-          this.router.navigate(['/homePageCitalac']);
-         }
-        }else{
-          alert("Neispravan email ili lozinka");
-        }
-     })
-    }
+      else if(data.uloga === "AUTOR"){
+        console.log("Ja sam AUTOR");
+        this.router.navigate(['/homePageAutor']);
+      } 
+      else {
+        console.log("Ja sam CITALAC");
+        this.router.navigate(['/homePageCitalac']);
+      }
+    
+    })
+    
   }
 
   zdravo() {
