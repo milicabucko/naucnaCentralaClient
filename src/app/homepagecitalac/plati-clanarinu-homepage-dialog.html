@@ -1,10 +1,27 @@
 <h1 mat-dialog-title>Zdravo {{data.korisnik.ime}} {{data.korisnik.prezime}}</h1>
 <div mat-dialog-content>
-    <p>Molimo odaberite nacin placanja</p>
+  
+    <p>Izaberite broj meseci clanarine (minimalno 1, maksimalno 12 meseci)</p>
+    <form [formGroup]="clanarinaForm">
+  
+      <div class="form-group">
+        <mat-form-field>
+          <input matInput
+            placeholder="Broj meseci"
+            class="form-control"
+            formControlName="brojMeseci"
+            type="number"
+            min="1"
+            max="12"
+            (ngModelChange) = "izracunajCenuClanarine()"
+          >
+        </mat-form-field>
+      </div>
+
+    </form>
+    <p>Clanarina za odabrani broj meseci iznosi {{cena}} $</p>
+
   </div>
 <div mat-dialog-actions>   
-  <button mat-button (click)="platiClanarinu()">Kartica</button>
-  <button mat-button (click)="platiClanarinu()">PayPal</button>
-  <button mat-button (click)="platiClanarinu()">BitCoin</button>
-
+  <button mat-button [disabled] = "!clanarinaForm.valid" (click)="platiClanarinu()">PayPal</button>
 </div>

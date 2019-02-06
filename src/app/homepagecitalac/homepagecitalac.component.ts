@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { DialogData } from '../naucni-radovi/naucni-radovi.component';
 import { Constants } from '../constants/constants';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 export interface DialogData {
   // izdanjeId: number;
@@ -58,20 +59,34 @@ export class HomepagecitalacComponent implements OnInit {
 })
 export class PlatiClanarinuHomepageDialog {
 
+  clanarinaForm: FormGroup;
+  cena: Number;
+
   constructor(
     public dialogRef: MatDialogRef<PlatiClanarinuHomepageDialog>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     public ncService : NaucnaCentralaService) {}
 
+  ngOnInit() {
+    this.clanarinaForm = new FormGroup({
+      brojMeseci: new FormControl(1, [Validators.required]),
+    })
+    this.cena = this.clanarinaForm.value.brojMeseci * this.data.magazin.cenovnikClanarine.cena;
+  }
 
   onNoClick(): void {
     this.dialogRef.close();
   }
 
   platiClanarinu() {
-    this.ncService.executePayment(this.data.magazin.magazin.id, Constants.CLANARINA, this.data.korisnik.id, this.data.magazin.cenovnikClanarine.cena, this.data.magazin.cenovnikClanarine.brojMeseci).subscribe(data=> {
+    this.ncService.executePayment(this.data.magazin.magazin.id, Constants.CLANARINA, this.data.korisnik.id, this.cena, this.clanarinaForm.value.brojMeseci).subscribe(data=> {
+      console.log(data);
       window.open(data);
     })
+  }
+
+  izracunajCenuClanarine() {
+    this.cena = this.clanarinaForm.value.brojMeseci * this.data.magazin.cenovnikClanarine.cena;
   }
   
 
