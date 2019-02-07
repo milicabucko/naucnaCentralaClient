@@ -75,10 +75,12 @@ export class NaucniRadoviDialog {
   }
 
   kupiRad(id, cena, korisnik){
-    this.ncService.executePayment(id, Constants.TIP_PROIZVODA_NAUCNI_RAD, korisnik, cena, -1).subscribe(data=> {
-      console.log(data);
-      window.open(data);
-    })
+    this.ncService.portAvailablePC().subscribe(data => {
+      this.ncService.executePayment(data.server, id, Constants.TIP_PROIZVODA_NAUCNI_RAD, korisnik, cena, -1).subscribe(data=> {
+        console.log(data);
+        window.open(data);
+      })
+    });
   }
 
   kupiPrekoBanke(id,cena,korisnik){

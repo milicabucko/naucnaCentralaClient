@@ -16,6 +16,10 @@ export class NaucnaCentralaService {
     return this.http.get(this.SERVER_URL + "/korisnik/hello").map(res => res.toString());
   }
 
+  portAvailablePC() {
+    return this.http.get(this.SERVER_URL + "/util/paymentConcentratorServer").map(res => res.json());
+  }
+
   registration(korisnik: any) {
 
     korisnik.banka = false;
@@ -40,7 +44,8 @@ export class NaucnaCentralaService {
     return this.http.get(this.SERVER_URL + "/korisnik/commonPassword/" + lozinka).map(res => res.json());
   }
 
-  executePayment(proizvodId: Number, tipProizvoda: String, korisnikId: Number, cena: Number, brojMeseci: number) {
+  executePayment(pcURL: String, proizvodId: Number, tipProizvoda: String, korisnikId: Number, cena: Number, brojMeseci: number) {
+    console.log("PC url: " + pcURL);
     var kupovina : any;
     kupovina = {};
     kupovina.proizvodId = proizvodId;
@@ -48,7 +53,7 @@ export class NaucnaCentralaService {
     kupovina.korisnikId = korisnikId;
     kupovina.cena = cena;
     kupovina.brojMeseci = brojMeseci;
-    return this.http.post(this.PAYMENT_CONCENTRATOR_URL + "/payment/execute", kupovina).map(res => res.text());
+    return this.http.post(pcURL + "/payment/execute", kupovina).map(res => res.text());
   }
 
   executeBitCoin(proizvodId: Number, tipProizvoda: String, korisnikId: Number, cena: Number) {

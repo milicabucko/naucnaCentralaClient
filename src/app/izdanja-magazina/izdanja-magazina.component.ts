@@ -80,10 +80,12 @@ export class DialogOverviewExampleDialog {
   }
 
   kupiIzdanje(izdanjeId, cenaIzdanja, korisnik) {
-     this.ncService.executePayment(izdanjeId, Constants.TIP_PROIZVODA_IZDANJE_MAGAZINA, korisnik, cenaIzdanja, -1).subscribe(data=> {
+    this.ncService.portAvailablePC().subscribe(data => {
+     this.ncService.executePayment(data.server, izdanjeId, Constants.TIP_PROIZVODA_IZDANJE_MAGAZINA, korisnik, cenaIzdanja, -1).subscribe(data=> {
        console.log(data);
        window.open(data);
      })
+    });
   }
   
   kupiPrekoBanke(izdanjeId,cena,korisnik){

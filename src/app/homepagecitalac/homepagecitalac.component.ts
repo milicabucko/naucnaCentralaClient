@@ -79,10 +79,12 @@ export class PlatiClanarinuHomepageDialog {
   }
 
   platiClanarinu() {
-    this.ncService.executePayment(this.data.magazin.magazin.id, Constants.CLANARINA, this.data.korisnik.id, this.cena, this.clanarinaForm.value.brojMeseci).subscribe(data=> {
-      console.log(data);
-      window.open(data);
-    })
+    this.ncService.portAvailablePC().subscribe(data => {
+      this.ncService.executePayment(data.server, this.data.magazin.magazin.id, Constants.CLANARINA, this.data.korisnik.id, this.cena, this.clanarinaForm.value.brojMeseci).subscribe(data=> {
+        console.log(data);
+        window.open(data);
+      })
+    });
   }
 
   izracunajCenuClanarine() {
