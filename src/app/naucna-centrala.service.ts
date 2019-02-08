@@ -86,8 +86,8 @@ export class NaucnaCentralaService {
     kupovina.tipProizvoda = tipProizvoda;
     kupovina.korisnikId = korisnikId;
     kupovina.cena = cena;
-    console.log("usli brzi prsti");
-    return this.http.post(this.SERVER_URL + "/api/bankPayment", kupovina).map(res => res.text());
+    kupovina.tenantID = 1;
+    return this.http.post(this.SERVER_URL + "/api/bankPayment", kupovina).map(res => res.json());
   }
 
   login(email, lozinka){

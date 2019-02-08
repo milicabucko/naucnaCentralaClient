@@ -92,6 +92,12 @@ export class DialogOverviewExampleDialog {
     console.log("busdbfwef");
     this.ncService.executeBankPayment(izdanjeId, Constants.TIP_PROIZVODA_IZDANJE_MAGAZINA, korisnik , cena).subscribe(data=>{
       console.log(data);
+     //  if(data.paymentId != null){
+         window.location.href = data.url;
+      // }
+     //  else{
+      //   alert("Doslo je do greske prilikom pokusaja kupovine! Molimo Vas da pokusate ponovo.");
+      // }
 
     })
   }

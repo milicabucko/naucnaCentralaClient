@@ -88,6 +88,13 @@ export class NaucniRadoviDialog {
     this.ncService.executeBankPayment(id, Constants.TIP_PROIZVODA_NAUCNI_RAD, korisnik , cena).subscribe(data=>{
       console.log(data);
 
+      //if(data.paymentId != null){
+        window.location.href = data.url;
+      //}
+      //else{
+        //alert("Doslo je do greske prilikom pokusaja kupovine! Molimo Vas da pokusate ponovo.");
+      //}
+
     })
   }
 
