@@ -39,24 +39,59 @@ export class NaucniRadoviComponent implements OnInit {
       this.radovi = data;
       if(data.length == 0){
         alert("Trenutno radova za ovo izdanje");
+        
         this.router.navigate(['/homePageCitalac']);
       }
     })
   }
 
-  kupiRad(id, cena) {
-    
-    const dialogRef = this.dialog.open(NaucniRadoviDialog, {
-      width: '400px',
-      data: {id, cena,korisnik: this.korisnik}
-    });
+   kupiRad(id, cena) {
+    this.ncService.portAvailablePC().subscribe(data => {
+      const dialogRef = this.dialog.open(NaucniRadoviDialog, {
+        width: '400px',
+        data: {id, cena,korisnik: this.korisnik}
+      });
 
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-    });
-   
+      dialogRef.afterClosed().subscribe(result => {
+        console.log('The dialog was closed');
+      });
+  })
+  }
+
+  kupiBitCoin(id,cena,korisnik){
+    this.ncService.portAvailablePC().subscribe(data => {
+      this.ncService.executeBitCoin(id, Constants.TIP_PROIZVODA_NAUCNI_RAD, korisnik , cena).subscribe(data=>{
+        console.log(data);
+        var array = data.split(',')
+        var paymentUrl = array[0];
+        console.log(paymentUrl);
+        document.location.href =paymentUrl;
+        var transactionId = array[1];
+        this.ncService.saveBitCoinTransaction(id, Constants.TIP_PROIZVODA_NAUCNI_RAD, korisnik , cena, transactionId).subscribe(data=>{
+          console.log(data);
+        })
+      })
+   });
+  }
+
+
+  kupiPrekoBanke(id,cena,korisnik){
+    console.log("busdbfwef");
+    this.ncService.executeBankPayment(id, Constants.TIP_PROIZVODA_NAUCNI_RAD, korisnik , cena).subscribe(data=>{
+      console.log(data);
+
+      //if(data.paymentId != null){
+        window.location.href = data.url;
+      //}
+      //else{
+        //alert("Doslo je do greske prilikom pokusaja kupovine! Molimo Vas da pokusate ponovo.");
+      //}
+
+    })
   }
 }
+
+
 
 @Component({
   selector: 'naucni-radovi-dialog',
@@ -106,7 +141,6 @@ export class NaucniRadoviDialog {
       console.log(paymentUrl);
       document.location.href =paymentUrl;
       var transactionId = array[1];
-      alert(transactionId+" je id transakcije");
       this.ncService.saveBitCoinTransaction(id, Constants.TIP_PROIZVODA_NAUCNI_RAD, korisnik , cena, transactionId).subscribe(data=>{
         console.log(data);
       })

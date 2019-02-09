@@ -20,8 +20,16 @@
         <i>Kljucni pojmovi: </i> <b>{{rad.rad.kljucniPojmovi}}</b> <br>
     </mat-card-content>
     <mat-card-actions>
-      <button [disabled] = "!rad.kupiRad" (click)="kupiRad(rad.rad.id, rad.cena)" mat-button>Kupi rad</button>
+      <!--<button [disabled] = "!rad.kupiRad" (click)="kupiRad(rad.rad.id, rad.cena)" mat-button>Kupi rad</button> -->
       <button [disabled] = "!rad.preuzmiRad" mat-button>Preuzmi rad</button>
+
+      <h3>
+        Kupi rad
+      </h3>
+      <br>
+      <button mat-button [disabled] = "!korisnik.bitcoin" [disabled] = "!rad.kupiRad" (click)="kupiBitCoin(rad.rad.id, rad.cena, korisnik.id)">Kupi putem BitCoin-a</button>
+      <button mat-button [disabled] = "!korisnik.banka" [disabled] = "!rad.kupiRad" (click)="kupiPrekoBanke(rad.rad.id, rad.cena, korisnik.id)">Kupi putem Kartice</button>
+      <button mat-button [disabled] = "!korisnik.paypal" [disabled] = "!rad.kupiRad" (click)="kupiRad(rad.rad.id, rad.cena, korisnik.id)">Kupi putem PayPal-a</button>
     </mat-card-actions>
     
   </mat-card>

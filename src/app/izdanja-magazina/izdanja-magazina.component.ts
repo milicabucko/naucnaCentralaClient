@@ -48,7 +48,7 @@ export class IzdanjaMagazinaComponent implements OnInit {
     this.router.navigate(['/listaRadova', izdanjeId]);
   }
 
-  kupiIzdanje(id, cena) {
+  /*kupiIzdanje(id, cena) {
 
     const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
       width: '400px',
@@ -58,6 +58,42 @@ export class IzdanjaMagazinaComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
     });
+  }*/
+
+  kupiIzdanje(izdanjeId, cenaIzdanja, korisnik) {
+    this.ncService.portAvailablePC().subscribe(data => {
+     this.ncService.executePayment(data.server, izdanjeId, Constants.TIP_PROIZVODA_IZDANJE_MAGAZINA, korisnik, cenaIzdanja, -1).subscribe(data=> {
+       console.log(data);
+       window.open(data);
+     })
+    });
+  }
+  
+  kupiPrekoBanke(izdanjeId,cena,korisnik){
+    this.ncService.executeBankPayment(izdanjeId, Constants.TIP_PROIZVODA_IZDANJE_MAGAZINA, korisnik , cena).subscribe(data=>{
+      console.log(data);
+     //  if(data.paymentId != null){
+         window.location.href = data.url;
+      // }
+     //  else{
+      //   alert("Doslo je do greske prilikom pokusaja kupovine! Molimo Vas da pokusate ponovo.");
+      // }
+
+    })
+  }
+
+  kupiBitCoin(id,cena,korisnik){
+    this.ncService.executeBitCoin(id, Constants.TIP_PROIZVODA_IZDANJE_MAGAZINA, korisnik , cena).subscribe(data=>{
+      console.log(data);
+      var array = data.split(',')
+      var paymentUrl = array[0];
+      console.log(paymentUrl);
+      document.location.href =paymentUrl;
+      var transactionId = array[1];
+      this.ncService.saveBitCoinTransaction(id, Constants.TIP_PROIZVODA_NAUCNI_RAD, korisnik , cena, transactionId).subscribe(data=>{
+        console.log(data);
+      })
+    })
   }
 
 }
