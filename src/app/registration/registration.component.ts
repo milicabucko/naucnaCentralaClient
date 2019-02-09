@@ -35,6 +35,7 @@ export class RegistrationComponent implements OnInit {
   save() {
     this.naucnaCentralaService.registration(this.registrationForm.value).subscribe(data=>{
       console.log(data);
+      this.router.navigateByUrl('/login');
     })
   }
 
