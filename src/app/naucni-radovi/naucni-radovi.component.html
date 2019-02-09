@@ -27,9 +27,9 @@
         Kupi rad
       </h3>
       <br>
-      <button mat-button [disabled] = "!korisnik.bitcoin" [disabled] = "!rad.kupiRad" (click)="kupiBitCoin(rad.rad.id, rad.cena, korisnik.id)">Kupi putem BitCoin-a</button>
-      <button mat-button [disabled] = "!korisnik.banka" [disabled] = "!rad.kupiRad" (click)="kupiPrekoBanke(rad.rad.id, rad.cena, korisnik.id)">Kupi putem Kartice</button>
-      <button mat-button [disabled] = "!korisnik.paypal" [disabled] = "!rad.kupiRad" (click)="kupiRad(rad.rad.id, rad.cena, korisnik.id)">Kupi putem PayPal-a</button>
+      <button mat-button [disabled] = "(!rad.kupiRad) || (!korisnik.bitcoin)" (click)="kupiBitCoin(rad.rad.id, rad.cena, korisnik.id)">Kupi putem BitCoin-a</button>
+      <button mat-button [disabled] = "(!rad.kupiRad) || (!korisnik.banka)" (click)="kupiPrekoBanke(rad.rad.id, rad.cena, korisnik.id)">Kupi putem Kartice</button>
+      <button mat-button [disabled] = "(!rad.kupiRad) || (!korisnik.paypal)" (click)="kupiRad(rad.rad.id, rad.cena, korisnik.id)">Kupi putem PayPal-a</button>
     </mat-card-actions>
     
   </mat-card>
