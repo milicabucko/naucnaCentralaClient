@@ -39,23 +39,19 @@ export class NaucniRadoviComponent implements OnInit {
       this.radovi = data;
       if(data.length == 0){
         alert("Trenutno radova za ovo izdanje");
-        
+
         this.router.navigate(['/homePageCitalac']);
       }
     })
   }
 
-   kupiRad(id, cena) {
+  kupiRad(id, cena, korisnik){
     this.ncService.portAvailablePC().subscribe(data => {
-      const dialogRef = this.dialog.open(NaucniRadoviDialog, {
-        width: '400px',
-        data: {id, cena,korisnik: this.korisnik}
-      });
-
-      dialogRef.afterClosed().subscribe(result => {
-        console.log('The dialog was closed');
-      });
-  })
+      this.ncService.executePayment(data.server, id, Constants.TIP_PROIZVODA_NAUCNI_RAD, korisnik, cena, -1).subscribe(data=> {
+        console.log(data);
+        window.open(data);
+      })
+    });
   }
 
   kupiBitCoin(id,cena,korisnik){

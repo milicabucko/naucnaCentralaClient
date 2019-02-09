@@ -64,7 +64,7 @@ export class IzdanjaMagazinaComponent implements OnInit {
     this.ncService.portAvailablePC().subscribe(data => {
      this.ncService.executePayment(data.server, izdanjeId, Constants.TIP_PROIZVODA_IZDANJE_MAGAZINA, korisnik, cenaIzdanja, -1).subscribe(data=> {
        console.log(data);
-       window.open(data);
+       window.open(data, '_self');
      })
     });
   }

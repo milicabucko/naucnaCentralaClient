@@ -32,6 +32,7 @@ import { HomepagecitalacComponent, PlatiClanarinuHomepageDialog } from './homepa
 import { PosaljiRadComponent } from './posalji-rad/posalji-rad.component';
 import { NaucniRadoviComponent, NaucniRadoviDialog } from './naucni-radovi/naucni-radovi.component';
 import { RegistrationComponent } from './registration/registration.component';
+import { PaymentSuccessComponent } from './payment-success/payment-success.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { RegistrationComponent } from './registration/registration.component';
     NaucniRadoviDialog,
     PlatiClanarinuHomepageDialog,
     PlatiClanarinuAutorDialog,
-    RegistrationComponent
+    RegistrationComponent,
+    PaymentSuccessComponent
   ],
   imports: [
     BrowserModule,

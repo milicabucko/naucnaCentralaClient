@@ -28,9 +28,9 @@
       <h3>
         Kupi celo izdanje
       </h3>
-      <button mat-button [disabled] = "(!rad.kupiIzdanje) || (!korisnik.bitcoin)" (click)="kupiBitCoin(izdanje.izdanje.id, izdanje.izdanje.cena, korisnik.id)">Kupi putem BitCoin-a</button>
-      <button mat-button [disabled] = "(!rad.kupiIzdanje) || (!korisnik.banka)" (click)="kupiPrekoBanke(izdanje.izdanje.id, izdanje.izdanje.cena, korisnik.id)">Kupi putem Kartice</button>
-      <button mat-button [disabled] = "(!rad.kupiIzdanje) || (!korisnik.paypal)" (click)="kupiRad(izdanje.izdanje.id, izdanje.izdanje.cena, korisnik.id)">Kupi putem PayPal-a</button>
+      <button mat-button [disabled] = "(!izdanje.kupiIzdanje) || (!korisnik.bitcoin)" (click)="kupiBitCoin(izdanje.izdanje.id, izdanje.izdanje.cena, korisnik.id)">Kupi putem BitCoin-a</button>
+      <button mat-button [disabled] = "(!izdanje.kupiIzdanje) || (!korisnik.banka)" (click)="kupiPrekoBanke(izdanje.izdanje.id, izdanje.izdanje.cena, korisnik.id)">Kupi putem Kartice</button>
+      <button mat-button [disabled] = "(!izdanje.kupiIzdanje) || (!korisnik.paypal)" (click)="kupiIzdanje(izdanje.izdanje.id, izdanje.izdanje.cena, korisnik.id)">Kupi putem PayPal-a</button>
     </mat-card-actions>
     
   </mat-card>
